@@ -1,8 +1,8 @@
 import SettingsNavigation from "@/components/dashboard/settings-navigation";
 import DashboardTitle from "@/components/dashboard/dashboard-title";
 import {Separator} from "@/components/ui/separator";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {createClient} from "@/lib/supabase/server";
+import TeamDashboardContent from "@/components/dashboard/team-dashboard-content";
 
 export default async function TeamAccountPage({params: {accountSlug}}: {params: {accountSlug: string}}) {
     const supabaseClient = createClient();
@@ -39,39 +39,7 @@ export default async function TeamAccountPage({params: {accountSlug}}: {params: 
                 </aside>
                 <div className="grow">
                     <div className="space-y-6">
-                        <div>
-                            <h3 className="text-lg font-medium">
-                                {isOwner ? "Owner Menu A" : "Member Menu A"}
-                            </h3>
-                            <p className="text-sm text-muted-foreground">
-                                {isOwner 
-                                    ? "Manage your team's rewards and settings." 
-                                    : "View your personal rewards and activity."
-                                }
-                            </p>
-                        </div>
-                        
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>
-                                    {isOwner ? "Team Management Overview" : "My Rewards Overview"}
-                                </CardTitle>
-                                <CardDescription>
-                                    {isOwner 
-                                        ? "Quick overview of your team and rewards management tools."
-                                        : "Your personal rewards, achievements, and team activity."
-                                    }
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <p>
-                                    {isOwner 
-                                        ? "Team management dashboard content for owners will go here."
-                                        : "Employee dashboard content for members will go here."
-                                    }
-                                </p>
-                            </CardContent>
-                        </Card>
+                        <TeamDashboardContent teamAccount={teamAccount} accountSlug={accountSlug} />
                     </div>
                 </div>
             </div>
