@@ -136,6 +136,89 @@ $$;
 GRANT EXECUTE ON FUNCTION public.create_employee_wallet(uuid, basejump.wallet_type, jsonb) TO authenticated;
 
 /**
+ * Creates both company and employee wallets for an account owner
+ * Automatically called when an owner needs dual wallet functionality
+ */
+CREATE OR REPLACE FUNCTION public.setup_owner_wallets(
+    account_id uuid,
+    owner_account_user_id uuid
+)
+RETURNS json
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public, basejump
+AS $$
+DECLARE
+    company_wallet_result json;
+    employee_wallet_result json;
+    final_result json;
+BEGIN
+    -- Check if user is account owner
+    IF NOT basejump.has_role_on_account(setup_owner_wallets.account_id, 'owner') THEN
+        RAISE EXCEPTION 'Only account owners can setup dual wallets';
+    END IF;
+    
+    -- Create company wallet if it doesn't exist
+    IF NOT EXISTS (
+        SELECT 1 FROM basejump.wallets w 
+        WHERE w.owner_type = 'account' 
+        AND w.owner_id = setup_owner_wallets.account_id 
+        AND w.wallet_type = 'company'
+    ) THEN
+        SELECT public.create_company_wallet(setup_owner_wallets.account_id, 'company'::basejump.wallet_type) INTO company_wallet_result;
+    ELSE
+        -- Get existing company wallet
+        SELECT json_build_object(
+            'wallet_id', w.id,
+            'owner_type', w.owner_type,
+            'owner_id', w.owner_id,
+            'wallet_type', w.wallet_type,
+            'balance', w.balance,
+            'created_at', w.created_at
+        ) INTO company_wallet_result
+        FROM basejump.wallets w
+        WHERE w.owner_type = 'account' 
+        AND w.owner_id = setup_owner_wallets.account_id 
+        AND w.wallet_type = 'company';
+    END IF;
+    
+    -- Create employee wallet if it doesn't exist
+    IF NOT EXISTS (
+        SELECT 1 FROM basejump.wallets w 
+        WHERE w.owner_type = 'account_user' 
+        AND w.owner_id = setup_owner_wallets.owner_account_user_id 
+        AND w.wallet_type = 'employee'
+    ) THEN
+        SELECT public.create_employee_wallet(setup_owner_wallets.owner_account_user_id, 'employee'::basejump.wallet_type) INTO employee_wallet_result;
+    ELSE
+        -- Get existing employee wallet
+        SELECT json_build_object(
+            'wallet_id', w.id,
+            'owner_type', w.owner_type,
+            'owner_id', w.owner_id,
+            'wallet_type', w.wallet_type,
+            'balance', w.balance,
+            'created_at', w.created_at
+        ) INTO employee_wallet_result
+        FROM basejump.wallets w
+        WHERE w.owner_type = 'account_user' 
+        AND w.owner_id = setup_owner_wallets.owner_account_user_id 
+        AND w.wallet_type = 'employee';
+    END IF;
+    
+    -- Return both wallets
+    SELECT json_build_object(
+        'company_wallet', company_wallet_result,
+        'employee_wallet', employee_wallet_result
+    ) INTO final_result;
+    
+    RETURN final_result;
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION public.setup_owner_wallets(uuid, uuid) TO authenticated;
+
+/**
  * Gets all wallets for an account
  * Returns both company wallets and employee wallets
  */

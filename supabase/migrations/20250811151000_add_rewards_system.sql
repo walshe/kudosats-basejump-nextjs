@@ -32,7 +32,19 @@ DO $$
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM pg_type t JOIN pg_namespace n ON n.oid = t.typnamespace 
                   WHERE t.typname = 'wallet_type' AND n.nspname = 'basejump') THEN
-        CREATE TYPE basejump.wallet_type AS ENUM ('lightning', 'solana', 'points');
+        CREATE TYPE basejump.wallet_type AS ENUM ('company', 'employee', 'lightning', 'solana', 'points');
+    ELSE
+        -- Add new enum values if they don't exist
+        BEGIN
+            ALTER TYPE basejump.wallet_type ADD VALUE IF NOT EXISTS 'company';
+        EXCEPTION
+            WHEN duplicate_object THEN NULL;
+        END;
+        BEGIN
+            ALTER TYPE basejump.wallet_type ADD VALUE IF NOT EXISTS 'employee';
+        EXCEPTION
+            WHEN duplicate_object THEN NULL;
+        END;
     END IF;
 END $$;
 

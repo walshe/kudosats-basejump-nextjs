@@ -2,6 +2,7 @@ import SettingsNavigation from "@/components/dashboard/settings-navigation";
 import DashboardTitle from "@/components/dashboard/dashboard-title";
 import {Separator} from "@/components/ui/separator";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {createClient} from "@/lib/supabase/server";
 import { Alert } from "@/components/ui/alert";
 
@@ -19,9 +20,14 @@ export default async function OwnerMenuBPage({params: {accountSlug}}: {params: {
     }
 
     const ownerItems = [
-        { name: "Owner Menu A", href: `/dashboard/${accountSlug}` },
-        { name: "Owner Menu B", href: `/dashboard/${accountSlug}/owner-menu-b` },
-        { name: "Owner Menu C", href: `/dashboard/${accountSlug}/owner-menu-c` },
+        // Admin Section
+        { name: "Admin Dashboard", href: `/dashboard/${accountSlug}` },
+        { name: "Team Management", href: `/dashboard/${accountSlug}/owner-menu-b` },
+        { name: "Analytics & Reports", href: `/dashboard/${accountSlug}/owner-menu-c` },
+        // Personal Employee Section
+        { name: "My Personal Dashboard", href: `/dashboard/${accountSlug}/employee-view` },
+        { name: "My Personal Rewards", href: `/dashboard/${accountSlug}/member-menu-b` },
+        { name: "My Personal Wallet", href: `/dashboard/${accountSlug}/member-menu-c` },
     ];
     
     return (
@@ -35,23 +41,81 @@ export default async function OwnerMenuBPage({params: {accountSlug}}: {params: {
                 <div className="grow">
                     <div className="space-y-6">
                         <div>
-                            <h3 className="text-lg font-medium">Owner Menu B</h3>
+                            <h3 className="text-lg font-medium">Team Management</h3>
                             <p className="text-sm text-muted-foreground">
-                                Advanced team management and rewards configuration.
+                                Manage employees, reward categories, and team settings.
                             </p>
                         </div>
                         
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Team Rewards Management</CardTitle>
-                                <CardDescription>
-                                    Configure reward categories, manage employee wallets, and set reward policies.
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <p>Advanced team management tools for owners will go here.</p>
-                            </CardContent>
-                        </Card>
+                        <div className="grid gap-6 md:grid-cols-2">
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Employee Management</CardTitle>
+                                    <CardDescription>
+                                        Manage team members, roles, and wallet setup.
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="space-y-4">
+                                        <div className="flex justify-between items-center p-3 border rounded">
+                                            <div>
+                                                <p className="font-medium">Sarah Johnson</p>
+                                                <p className="text-sm text-muted-foreground">Customer Support • 28,750 sats earned</p>
+                                            </div>
+                                            <Badge variant="outline">Active</Badge>
+                                        </div>
+                                        <div className="flex justify-between items-center p-3 border rounded">
+                                            <div>
+                                                <p className="font-medium">Mike Chen</p>
+                                                <p className="text-sm text-muted-foreground">Developer • 32,500 sats earned</p>
+                                            </div>
+                                            <Badge variant="outline">Active</Badge>
+                                        </div>
+                                        <div className="flex justify-between items-center p-3 border rounded">
+                                            <div>
+                                                <p className="font-medium">Emily Rodriguez</p>
+                                                <p className="text-sm text-muted-foreground">Sales • 24,100 sats earned</p>
+                                            </div>
+                                            <Badge variant="outline">Active</Badge>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Reward Categories</CardTitle>
+                                    <CardDescription>
+                                        Configure reward types and spending limits.
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="space-y-4">
+                                        <div className="flex justify-between items-center p-3 border rounded">
+                                            <div>
+                                                <p className="font-medium">Performance Excellence</p>
+                                                <p className="text-sm text-muted-foreground">Max: 10,000 sats</p>
+                                            </div>
+                                            <Badge className="bg-green-100 text-green-800">Active</Badge>
+                                        </div>
+                                        <div className="flex justify-between items-center p-3 border rounded">
+                                            <div>
+                                                <p className="font-medium">Great Teamwork</p>
+                                                <p className="text-sm text-muted-foreground">Max: 5,000 sats</p>
+                                            </div>
+                                            <Badge className="bg-green-100 text-green-800">Active</Badge>
+                                        </div>
+                                        <div className="flex justify-between items-center p-3 border rounded">
+                                            <div>
+                                                <p className="font-medium">Customer Service</p>
+                                                <p className="text-sm text-muted-foreground">Max: 7,500 sats</p>
+                                            </div>
+                                            <Badge className="bg-green-100 text-green-800">Active</Badge>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
                     </div>
                 </div>
             </div>

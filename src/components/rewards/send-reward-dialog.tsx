@@ -95,7 +95,7 @@ export default function SendRewardDialog({ open, onOpenChange, accountSlug }: Se
             Send Lightning Reward
           </DialogTitle>
           <DialogDescription>
-            Send instant sats rewards to recognize employee achievements.
+            Send instant sats rewards from company wallet to recognize employee achievements.
           </DialogDescription>
         </DialogHeader>
         
@@ -171,14 +171,16 @@ export default function SendRewardDialog({ open, onOpenChange, accountSlug }: Se
           {/* Preview */}
           {selectedEmployee && amount && category && (
             <div className="p-3 bg-muted rounded-lg">
-              <p className="text-sm font-medium mb-1">Preview:</p>
+              <p className="text-sm font-medium mb-1">Payment Preview:</p>
               <p className="text-sm text-muted-foreground">
-                Send <strong>{amount} sats</strong> to <strong>{selectedEmployeeName}</strong> for{" "}
-                <strong>{mockCategories.find(c => c.id === category)?.name}</strong>
+                <strong>From:</strong> Company Wallet<br />
+                <strong>To:</strong> {selectedEmployeeName} (Employee Wallet)<br />
+                <strong>Amount:</strong> {amount} sats (≈ €{estimatedEur})<br />
+                <strong>Category:</strong> {mockCategories.find(c => c.id === category)?.name}
                 {message && (
                   <>
                     <br />
-                    Message: "{message}"
+                    <strong>Message:</strong> "{message}"
                   </>
                 )}
               </p>
