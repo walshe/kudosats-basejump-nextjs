@@ -66,7 +66,10 @@ export default function AccountSelector({ className, accountId, onAccountSelecte
                         aria-label="Select a team"
                         className={cn("w-[250px] justify-between", className)}
                     >
-                        {selectedAccount?.name || placeholder}
+                        {selectedAccount 
+                            ? `${selectedAccount.name}${selectedAccount.personal_account ? '' : ` (${selectedAccount.account_role})`}`
+                            : placeholder
+                        }
                         <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                 </PopoverTrigger>
@@ -111,7 +114,7 @@ export default function AccountSelector({ className, accountId, onAccountSelecte
                                             }}
                                             className="text-sm"
                                         >
-                                            {team.name}
+                                            {team.name} ({team.account_role})
                                             <Check
                                                 className={cn(
                                                     "ml-auto h-4 w-4",
