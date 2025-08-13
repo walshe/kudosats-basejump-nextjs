@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import {createClient} from "@/lib/supabase/server";
 import { Alert } from "@/components/ui/alert";
+import { getOwnerNavigation } from "@/lib/navigation";
 
 export default async function OwnerMenuBPage({params: {accountSlug}}: {params: {accountSlug: string}}) {
     const supabaseClient = createClient();
@@ -19,16 +20,7 @@ export default async function OwnerMenuBPage({params: {accountSlug}}: {params: {
         )
     }
 
-    const ownerItems = [
-        // Admin Section
-        { name: "Admin Dashboard", href: `/dashboard/${accountSlug}` },
-        { name: "Team Management", href: `/dashboard/${accountSlug}/owner-menu-b` },
-        { name: "Analytics & Reports", href: `/dashboard/${accountSlug}/owner-menu-c` },
-        // Personal Employee Section
-        { name: "My Personal Dashboard", href: `/dashboard/${accountSlug}/employee-view` },
-        { name: "My Personal Rewards", href: `/dashboard/${accountSlug}/member-menu-b` },
-        { name: "My Personal Wallet", href: `/dashboard/${accountSlug}/member-menu-c` },
-    ];
+    const ownerItems = getOwnerNavigation(accountSlug);
     
     return (
         <div className="hidden space-y-6 pb-16 md:block">
