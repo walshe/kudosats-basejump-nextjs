@@ -38,7 +38,7 @@ export default async function Index() {
             </div>
             <div className="p-6 rounded-lg border border-gray-200 bg-gradient-to-br from-green-50 to-emerald-50">
               <h3 className="font-semibold text-xl mb-3 text-green-900">⚡ Our Solution</h3>
-              <p className="text-gray-700">Managers send tiny, instant rewards (e.g., 100 sats ≈ $0.10) at the moment of achievement. Real money, arrives instantly, with a personal message.</p>
+              <p className="text-gray-700">Managers send instant kudos backed by real sats (e.g., 100 sats ≈ $0.10) at the moment of achievement. Recognition with real value, delivered with a personal message.</p>
             </div>
           </div>
 
@@ -64,7 +64,7 @@ export default async function Index() {
                   <span className="text-2xl">💰</span>
                 </div>
                 <h4 className="font-semibold mb-2">Simple Pricing</h4>
-                <p className="text-sm text-gray-600">Free internal rewards, &lt; $0.01 withdrawal fees</p>
+                <p className="text-sm text-gray-600">$39/month per team • Free internal rewards • &lt; $0.01 withdrawals</p>
               </div>
             </div>
           </div>
