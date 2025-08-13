@@ -6,8 +6,13 @@ export default async function Index() {
   return (
     <div className="flex-1 w-full flex flex-col gap-8 items-center">
       <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16 px-2 md:px-0">
-        <div className="w-full max-w-screen-lg flex justify-end items-center p-3 text-sm">
-            <Button asChild variant="default" size="sm">
+        <div className="w-full max-w-screen-lg flex justify-between items-center p-3 text-sm">
+          <div className="flex items-center">
+            <span className="text-2xl font-bold">
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">K</span><span className="text-orange-500">⚡</span>
+            </span>
+          </div>
+            <Button asChild variant="default" size="sm" className="bg-orange-500 hover:bg-orange-600">
               <Link href="/login">Sign In</Link>
             </Button>
         </div>
@@ -16,8 +21,11 @@ export default async function Index() {
       <div className="flex-1 flex flex-col gap-6 max-w-4xl px-3 w-full">
         <main className="flex-1 flex flex-col gap-6">
           <div className="text-center mb-4">
-            <h1 className="font-bold text-5xl mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              kudoSats
+            <h1 className="font-bold text-5xl mb-4 flex items-center justify-center gap-2">
+              <span>
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">kudo</span><span className="text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)] -ml-0.5">Sats</span>
+              </span>
+              <span className="text-yellow-400 text-4xl">⚡</span>
             </h1>
             <p className="text-xl text-gray-600 mb-2">Employee Rewards & Micro-Bonuses Platform</p>
             <p className="text-lg text-gray-500">Instant recognition with Lightning Network micropayments</p>
@@ -30,7 +38,7 @@ export default async function Index() {
             </div>
             <div className="p-6 rounded-lg border border-gray-200 bg-gradient-to-br from-green-50 to-emerald-50">
               <h3 className="font-semibold text-xl mb-3 text-green-900">⚡ Our Solution</h3>
-              <p className="text-gray-700">Managers send tiny, instant rewards (e.g., 1,000 sats ≈ €0.50) at the moment of achievement. Real money, arrives instantly, with a personal message.</p>
+              <p className="text-gray-700">Managers send tiny, instant rewards (e.g., 100 sats ≈ $0.10) at the moment of achievement. Real money, arrives instantly, with a personal message.</p>
             </div>
           </div>
 
@@ -49,14 +57,14 @@ export default async function Index() {
                   <span className="text-2xl">🎮</span>
                 </div>
                 <h4 className="font-semibold mb-2">Gamification</h4>
-                <p className="text-sm text-gray-600">Leaderboards, streaks, badges, and NFT milestones make rewards fun and engaging</p>
+                <p className="text-sm text-gray-600">Leaderboards, streaks, badges, and achievements make rewards fun and engaging</p>
               </div>
               <div className="text-center p-4">
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">💰</span>
                 </div>
-                <h4 className="font-semibold mb-2">Cost Effective</h4>
-                <p className="text-sm text-gray-600">Negligible transaction fees make microbonuses as small as €0.10 feasible</p>
+                <h4 className="font-semibold mb-2">Simple Pricing</h4>
+                <p className="text-sm text-gray-600">Free internal rewards, &lt; $0.01 withdrawal fees</p>
               </div>
             </div>
           </div>
@@ -95,9 +103,9 @@ export default async function Index() {
             </div>
           </div>
 
-          <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg">
+          <div className="text-center bg-gradient-to-r from-orange-500 to-orange-600 text-white p-8 rounded-lg">
             <h2 className="font-bold text-2xl mb-4">Ready to transform employee recognition?</h2>
-            <p className="mb-6 text-blue-100">Join companies using frictionless, instant rewards to boost team morale and engagement.</p>
+            <p className="mb-6 text-orange-100">Join companies using frictionless, instant rewards to boost team morale and engagement.</p>
             <Button asChild size="lg" variant="secondary">
               <Link href="/login">Get Started Today</Link>
             </Button>
