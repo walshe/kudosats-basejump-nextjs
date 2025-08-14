@@ -1,7 +1,11 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { createClient } from '@/lib/supabase/server';
+import UserAccountButton from '@/components/basejump/user-account-button';
 
 export default async function Index() {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
   return (
     <div className="flex-1 w-full flex flex-col gap-8 items-center">
@@ -12,9 +16,18 @@ export default async function Index() {
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">K</span><span className="text-orange-500">⚡</span>
             </span>
           </div>
+          {user ? (
+            <div className="flex items-center gap-2">
+              <Button asChild variant="default" size="sm" className="bg-orange-500 hover:bg-orange-600">
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+              <UserAccountButton />
+            </div>
+          ) : (
             <Button asChild variant="default" size="sm" className="bg-orange-500 hover:bg-orange-600">
               <Link href="/login">Sign In</Link>
             </Button>
+          )}
         </div>
       </nav>
 
