@@ -23,12 +23,13 @@ export default async function Index() {
           <div className="text-center mb-4">
             <h1 className="font-bold text-5xl mb-4 flex items-center justify-center gap-2">
               <span>
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">kudo</span><span className="text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)] -ml-0.5">Sats</span>
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Kudo</span><span className="text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)] -ml-0.5">Sats</span>
               </span>
               <span className="text-yellow-400 text-4xl">⚡</span>
             </h1>
+            <p className="text-lg text-gray-500 mb-2 italic">Where kudos meet sats</p>
             <p className="text-xl text-gray-600 mb-2">Employee Rewards & Micro-Bonuses Platform</p>
-            <p className="text-lg text-gray-500">Instant recognition with Lightning Network micropayments</p>
+            <p className="text-lg text-gray-500">Instant recognition with Lightning Network micropayments <a href="https://lightning.network/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline text-sm">(Learn more about Lightning)</a></p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -43,7 +44,7 @@ export default async function Index() {
           </div>
 
           <div className="mb-8">
-            <h2 className="font-bold text-3xl mb-6 text-center">Why kudoSats?</h2>
+            <h2 className="font-bold text-3xl mb-6 text-center">Why KudoSats?</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center p-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
