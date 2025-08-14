@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, TrendingUp, Send } from "lucide-react";
 import SendRewardDialog from "@/components/rewards/send-reward-dialog";
-import CompanyWalletCard from "@/components/rewards/company-wallet-card";
+import TeamWalletCard from "@/components/rewards/team-wallet-card";
 import EmployeeWalletCard from "@/components/rewards/employee-wallet-card";
 import RecentActivityCard from "@/components/rewards/recent-activity-card";
 import TopPerformersCard from "@/components/rewards/top-performers-card";
@@ -36,13 +36,13 @@ export default function TeamDashboardContent({ teamAccount, accountSlug }: TeamD
           <div>
             <h3 className="text-lg font-medium">Team Management</h3>
             <p className="text-sm text-muted-foreground">
-              Manage your company wallet, send rewards, and track team performance.
+              Manage your team wallet, send rewards, and track team performance.
             </p>
           </div>
 
           {/* Admin Controls */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <CompanyWalletCard balance={245680} />
+            <TeamWalletCard balance={245680} />
             
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -79,7 +79,7 @@ export default function TeamDashboardContent({ teamAccount, accountSlug }: TeamD
                 This Month's Performance
               </CardTitle>
               <CardDescription>
-                Company rewards activity and growth metrics
+                Team rewards activity and growth metrics
               </CardDescription>
             </CardHeader>
             <CardContent>

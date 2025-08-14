@@ -7,21 +7,21 @@ export const getOwnerNavigation = (accountSlug: string) => [
     href: `/dashboard/${accountSlug}`,
     icon: <Shield className="h-4 w-4" />,
     variant: 'admin' as const,
-    section: 'Company Management'
+    section: 'Team Management'
   },
   { 
     name: "Team Management", 
     href: `/dashboard/${accountSlug}/owner-menu-b`,
     icon: <Users className="h-4 w-4" />,
     variant: 'admin' as const,
-    section: 'Company Management'
+    section: 'Team Management'
   },
   { 
     name: "Analytics & Reports", 
     href: `/dashboard/${accountSlug}/owner-menu-c`,
     icon: <BarChart3 className="h-4 w-4" />,
     variant: 'admin' as const,
-    section: 'Company Management'
+    section: 'Team Management'
   },
   // Personal Employee Section
   { 

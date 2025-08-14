@@ -44,11 +44,11 @@ export default function SettingsNavigation({ className, items, ...props }: Sideb
                 : "text-green-700 hover:bg-green-50 hover:text-green-800 border-l-2 border-transparent hover:border-green-300"
         } else {
             variantStyles = isActive 
-                ? "bg-muted hover:bg-muted" 
-                : "hover:bg-transparent hover:underline"
+                ? "bg-muted text-muted-foreground hover:bg-muted" 
+                : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
         }
 
-        return cn(baseStyles, variantStyles, "justify-start")
+        return cn(baseStyles, variantStyles, "justify-start w-full text-left h-9 px-3")
     }
 
     return (

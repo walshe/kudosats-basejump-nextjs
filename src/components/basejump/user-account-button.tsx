@@ -28,35 +28,41 @@ export default async function UserAccountButton() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost">
-                    <UserIcon />
+                <Button variant="ghost" className="bg-orange-500 hover:bg-orange-600 text-white border-0">
+                    <UserIcon className="text-white" />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
+            <DropdownMenuContent className="w-64" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
-                    <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">{personalAccount.name}</p>
-                        <p className="text-xs leading-none text-muted-foreground">
-                            {personalAccount.email}
-                        </p>
+                    <div className="flex flex-col space-y-2 p-2">
+                        <div className="flex items-center gap-2">
+                            <span className="text-orange-500">⚡</span>
+                            <span className="text-xs text-muted-foreground font-medium">Logged in as</span>
+                        </div>
+                        <div className="flex flex-col space-y-1">
+                            <p className="text-sm font-semibold leading-none text-gray-900">{personalAccount.name}</p>
+                            <p className="text-xs leading-none text-muted-foreground">
+                                {personalAccount.email}
+                            </p>
+                        </div>
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {/* <DropdownMenuGroup>
+                <DropdownMenuGroup>
                     <DropdownMenuItem asChild>
-                        <Link href="/dashboard">My Account</Link>
+                        <Link href="/dashboard" className="flex items-center gap-2">
+                            <span>🏠</span>
+                            <span>Dashboard</span>
+                        </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/settings">Settings</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/settings/teams">Teams</Link>
-                    </DropdownMenuItem>
-                </DropdownMenuGroup> */}
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                <form action={signOut}>
-                    <button>Log out</button>
+                <DropdownMenuItem className="focus:bg-red-50 focus:text-red-600">
+                <form action={signOut} className="w-full">
+                    <button className="w-full text-left flex items-center gap-2">
+                        <span>🚪</span>
+                        <span>Log out</span>
+                    </button>
                 </form>
                 </DropdownMenuItem>
             </DropdownMenuContent>
