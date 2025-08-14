@@ -13,7 +13,15 @@ export default async function PersonalAccountDashboard({children, params: {accou
         redirect('/dashboard');
     }
 
-    const navigation = [
+    // Check if user is owner of this team
+    const { data: roleData, error: roleError } = await supabaseClient.rpc('current_user_account_role', {
+        account_id: teamAccount.account_id
+    });
+    
+    const accountRole = roleData?.account_role;
+
+    // Only show navigation if user is owner of THIS specific team
+    const navigation = accountRole === 'owner' ? [
         {
             name: 'Overview',
             href: `/dashboard/${accountSlug}`,
@@ -22,7 +30,7 @@ export default async function PersonalAccountDashboard({children, params: {accou
             name: 'Settings',
             href: `/dashboard/${accountSlug}/settings`
         }
-    ]
+    ] : [];
 
     return (
         <>

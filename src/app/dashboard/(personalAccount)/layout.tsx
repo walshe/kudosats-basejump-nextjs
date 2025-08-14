@@ -7,20 +7,9 @@ export default async function PersonalAccountDashboard({children}: {children: Re
 
     const {data: personalAccount, error} = await supabaseClient.rpc('get_personal_account');
 
-    const navigation = [
-        {
-            name: 'Overview',
-            href: '/dashboard',
-        },
-        {
-            name: 'Settings',
-            href: '/dashboard/settings'
-        }
-    ]
-
     return (
         <>
-            <DashboardHeader accountId={personalAccount.account_id} navigation={navigation} />
+            <DashboardHeader accountId={personalAccount.account_id} navigation={[]} />
             <div className="w-full p-8">{children}</div>
         </>
     )

@@ -22,10 +22,12 @@ export default function Login({
     });
 
     if (error) {
-      return redirect(`/login?message=Could not authenticate user&returnUrl=${searchParams.returnUrl}`);
+      const returnUrl = searchParams.returnUrl && searchParams.returnUrl !== 'undefined' ? `&returnUrl=${searchParams.returnUrl}` : '';
+      return redirect(`/login?message=Could not authenticate user${returnUrl}`);
     }
 
-    return redirect(searchParams.returnUrl || "/dashboard");
+    const returnUrl = searchParams.returnUrl && searchParams.returnUrl !== 'undefined' ? searchParams.returnUrl : "/dashboard";
+    return redirect(returnUrl);
   };
 
   const signUp = async (_prevState: any, formData: FormData) => {
@@ -45,15 +47,27 @@ export default function Login({
     });
 
     if (error) {
-      return redirect(`/login?message=Could not authenticate user&returnUrl=${searchParams.returnUrl}`);
+      const returnUrl = searchParams.returnUrl && searchParams.returnUrl !== 'undefined' ? `&returnUrl=${searchParams.returnUrl}` : '';
+      return redirect(`/login?message=Could not authenticate user${returnUrl}`);
     }
 
-    return redirect(`/login?message=Check email to continue sign in process&returnUrl=${searchParams.returnUrl}`);
+    const returnUrl = searchParams.returnUrl && searchParams.returnUrl !== 'undefined' ? `&returnUrl=${searchParams.returnUrl}` : '';
+    return redirect(`/login?message=Check email to continue sign in process${returnUrl}`);
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-6">
+      {/* KudoSats Branding */}
+      <div className="text-center mb-8">
+        <h1 className="font-bold text-4xl mb-2 flex items-center justify-center gap-2">
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Kudo</span><span className="text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">Sats</span>
+          <span className="text-yellow-400 text-3xl">⚡</span>
+        </h1>
+        <p className="text-gray-500 text-sm italic">Where kudos meet sats</p>
+        <p className="text-gray-600 mt-4">Sign in to your account</p>
+      </div>
+
+      <form className="animate-in flex flex-col gap-4 text-foreground">
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -74,6 +88,7 @@ export default function Login({
         <SubmitButton
           formAction={signIn}
           pendingText="Signing In..."
+          className="bg-orange-500 hover:bg-orange-600 text-white"
         >
           Sign In
         </SubmitButton>
@@ -81,14 +96,24 @@ export default function Login({
           formAction={signUp}
           variant="outline"
           pendingText="Signing Up..."
+          className="border-orange-500 text-orange-500 hover:bg-orange-50"
         >
           Sign Up
         </SubmitButton>
         {searchParams?.message && (
-          <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
+          <div className="mt-4 p-4 bg-orange-50 border border-orange-200 rounded-lg text-orange-800 text-center text-sm">
             {searchParams.message}
-          </p>
+          </div>
         )}
+        
+        <div className="text-center mt-6">
+          <a 
+            href="/"
+            className="text-sm text-gray-500 hover:text-orange-500 transition-colors"
+          >
+            ← Back to home
+          </a>
+        </div>
       </form>
     </div>
   );

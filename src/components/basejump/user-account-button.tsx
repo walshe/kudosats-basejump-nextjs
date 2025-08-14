@@ -42,7 +42,7 @@ export default async function UserAccountButton() {
                     </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup>
+                {/* <DropdownMenuGroup>
                     <DropdownMenuItem asChild>
                         <Link href="/dashboard">My Account</Link>
                     </DropdownMenuItem>
@@ -52,7 +52,7 @@ export default async function UserAccountButton() {
                     <DropdownMenuItem asChild>
                         <Link href="/dashboard/settings/teams">Teams</Link>
                     </DropdownMenuItem>
-                </DropdownMenuGroup>
+                </DropdownMenuGroup> */}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                 <form action={signOut}>
